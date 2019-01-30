@@ -11,7 +11,6 @@ export default class Header extends React.Component {
     return (
       <div className="auth0-lock-header">
         {backHandler && <BackButton onClick={backHandler} />}
-        <Background imageUrl={backgroundUrl} backgroundColor={backgroundColor} grayScale={!!name} />
         <Welcome title={title} name={name} imageUrl={name ? undefined : logoUrl} />
       </div>
     );
@@ -27,7 +26,7 @@ Header.propTypes = {
 class Welcome extends React.Component {
   render() {
     const { name, imageUrl, title } = this.props;
-    const imgClassName = !!title ? 'auth0-lock-header-logo' : 'auth0-lock-header-logo centered';
+    const imgClassName = title ? 'auth0-lock-header-logo' : 'auth0-lock-header-logo centered';
     const img = <img alt="" className={imgClassName} src={imageUrl} />;
     const welcome = title ? <WelcomeMessage title={title} name={name} /> : null;
 
@@ -106,7 +105,7 @@ class Background extends React.Component {
 
     const solidProps = {
       className: 'auth0-lock-header-bg-solid',
-      style: { backgroundColor: backgroundColor }
+      style: { backgroundColor }
     };
 
     return (
